@@ -28,3 +28,14 @@ require 'httparty'
     shiny_sprite: shiny_sprite_url
   )
 end
+
+require 'csv'
+
+CSV.foreach(Rails.root.join('db/data/pokemon_rarity.csv'), headers: true) do |row|
+  pokemon = Pokemon.find_by(pokedex_number: row['pokedex_number'].to_i)
+  if pokemon
+    pokemon.update(rarity: row['probability'])
+  else
+    puts "Pokemon ##{row['pokedex_number']} not found"
+  end
+end
