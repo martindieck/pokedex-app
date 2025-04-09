@@ -1,0 +1,14 @@
+<h1>Your Profile</h1>
+
+<h2>Caught Pokémon:</h2>
+<ul>
+  <% @caught_pokemons.each do |pokemon| %>
+    <li>
+      <%= pokemon.name %> 
+      <img src="<%= pokemon.sprite %>" alt="<%= pokemon.name %> Sprite" width="50" height="50">
+    </li>
+  <% end %>
+</ul>
+
+<!-- Add a button to go back to the encounter page -->
+<%= link_to 'Go to New Encounter', new_encounter_path, class: 'button' %>
