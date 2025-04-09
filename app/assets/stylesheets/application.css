@@ -8,3 +8,100 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+  /* GENERAL STYLING */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5faff;
+    color: #333;
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+  
+  h1, h2 {
+    color: #1f4f66;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+  
+  /* BUTTONS */
+  .button,
+  input[type="submit"],
+  a.button {
+    display: inline-block;
+    margin: 1rem auto;
+    padding: 0.6rem 1.2rem;
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .button:hover,
+  input[type="submit"]:hover,
+  a.button:hover {
+    background-color: #ffdd33;
+    transform: scale(1.05);
+  }
+  
+  /* LIST STYLING FOR PROFILE PAGE */
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  li {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 120px;
+    transition: transform 0.2s ease;
+  }
+  
+  li:hover {
+    transform: scale(1.05);
+  }
+  
+  li img {
+    display: block;
+    margin: 0.5rem auto 0;
+    width: 80px;
+    height: 80px;
+    image-rendering: pixelated;
+  }
+  
+  img[alt$="Sprite"] {
+    margin: 1rem auto;
+    display: block;
+    border-radius: 8px;
+  }
+  
+  /* SHINY ENCOUNTER HIGHLIGHT */
+  p:has(+ img[alt*="Shiny"]) {
+    color: #c0392b;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 1px rgba(255, 215, 0, 0.6);
+  }
+  
+  /* FORM STYLING */
+  form {
+    margin-top: 1.5rem;
+  }
+  
