@@ -6,22 +6,30 @@
 
 <ul>
   <% @caught_shinies.each do |pokemon| %>
-    <li>
-      #<%= pokemon.pokedex_number %> - <%= pokemon.name %>
-      <img src="<%= pokemon.shiny_sprite %>" alt="<%= pokemon.name %> Shiny Sprite" width="50" height="50">
+    <li class="shiny">
+      <div class="pokemon-number">
+        <%= pokemon.pokedex_number %>
+      </div>
+      <div class="pokemon-name">
+        <%= pokemon.name %>
+      </div>
+      <img src="<%= pokemon.shiny_sprite %>" alt="<%= pokemon.name %> Shiny Sprite">
     </li>
   <% end %>
 </ul>
-
 
 <h2>Caught Pokémon: <%= @caught_count %> / <%= @total_pokemon %></h2>
 
 <ul>
   <% @caught_pokemons.each do |pokemon| %>
     <li>
-      #<%= pokemon.pokedex_number %> - <%= pokemon.name %>
-      <img src="<%= pokemon.sprite %>" alt="<%= pokemon.name %> Sprite" width="50" height="50">
+      <div class="pokemon-number">
+        <%= pokemon.pokedex_number %>
+      </div>
+      <div class="pokemon-name">
+        <%= pokemon.name %>
+      </div>
+      <img src="<%= pokemon.sprite %>" alt="<%= pokemon.name %> Sprite">
     </li>
   <% end %>
 </ul>
-
