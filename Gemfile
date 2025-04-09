@@ -40,6 +40,9 @@ gem "thruster", require: false
 # Add Authentication module using devise
 gem "devise"
 
+# Add HTTP API Calling using httparty
+gem "httparty"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

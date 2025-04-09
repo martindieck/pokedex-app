@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_09_010049) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_09_011726) do
+  create_table "pokemons", force: :cascade do |t|
+    t.string "name"
+    t.string "type1"
+    t.string "type2"
+    t.integer "pokedex_number"
+    t.string "sprite"
+    t.string "shiny_sprite"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
