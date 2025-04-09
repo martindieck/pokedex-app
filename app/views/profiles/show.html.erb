@@ -1,6 +1,7 @@
 <h1>Your Profile</h1>
 
-<h2>Caught Pokémon:</h2>
+<h2>Caught Pokémon: <%= @caught_count %> / <%= @total_pokemon %></h2>
+
 <ul>
   <% @caught_pokemons.each do |pokemon| %>
     <li>
@@ -10,5 +11,4 @@
   <% end %>
 </ul>
 
-<!-- Add a button to go back to the encounter page -->
 <%= link_to 'Go to New Encounter', new_encounter_path, class: 'button' %>
