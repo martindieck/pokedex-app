@@ -7,7 +7,7 @@
 <ul>
   <% @caught_shinies.each do |pokemon| %>
     <li>
-      <%= pokemon.name %> 
+      #<%= pokemon.pokedex_number %> - <%= pokemon.name %>
       <img src="<%= pokemon.shiny_sprite %>" alt="<%= pokemon.name %> Shiny Sprite" width="50" height="50">
     </li>
   <% end %>
@@ -19,7 +19,7 @@
 <ul>
   <% @caught_pokemons.each do |pokemon| %>
     <li>
-      <%= pokemon.name %> 
+      #<%= pokemon.pokedex_number %> - <%= pokemon.name %>
       <img src="<%= pokemon.sprite %>" alt="<%= pokemon.name %> Sprite" width="50" height="50">
     </li>
   <% end %>
