@@ -1,0 +1,18 @@
+<h1>New Encounter!</h1>
+
+<% if @pokemon %>
+  <p>You encountered a <%= @pokemon.name %>!</p>
+  <img src="<%= @pokemon.sprite %>" alt="<%= @pokemon.name %> Sprite" width="150" height="150">
+
+  <%= form_with url: encounters_path, method: :post do %>
+    <%= hidden_field_tag :pokemon_id, @pokemon.id %>
+    <%= submit_tag "Catch Pokémon!" %>
+  <% end %>
+
+<% else %>
+  <p>No Pokémon encountered yet. Try again!</p>
+  <%= link_to 'Try Again', new_encounter_path %>
+<% end %>
+
+<!-- Add a button to go to the user's profile -->
+<%= link_to 'View Profile', profile_path, class: 'button' %>
