@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_09_060413) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_09_131426) do
   create_table "pokemons", force: :cascade do |t|
     t.string "name"
     t.string "type1"
@@ -29,6 +29,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_060413) do
     t.boolean "caught"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "shiny"
     t.index ["pokemon_id"], name: "index_user_pokemons_on_pokemon_id"
     t.index ["user_id"], name: "index_user_pokemons_on_user_id"
   end

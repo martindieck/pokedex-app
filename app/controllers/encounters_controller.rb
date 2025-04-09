@@ -11,13 +11,16 @@ class EncountersController < ApplicationController
     total_rarity = rarities.sum
 
     # Generate a random float between 0 and total_rarity
-    random_value = rand * total_rarity
+    rarity_selector = rand * total_rarity
+
+    # See if it's shiny or not
+    @is_shiny = rand < 0.01
 
     # Find the Pokémon based on the random value and rarity distribution
     cumulative_rarity = 0
     @pokemon = pokemons.find do |pokemon|
       cumulative_rarity += pokemon.rarity
-      cumulative_rarity >= random_value
+      cumulative_rarity >= rarity_selector
     end
 
     # If no Pokémon was selected (although rare), fallback to the first Pokémon
@@ -27,13 +30,15 @@ class EncountersController < ApplicationController
   def create
     # Find the Pokémon based on the ID passed in the form
     pokemon = Pokemon.find(params[:pokemon_id])
+    is_shiny = ActiveModel::Type::Boolean.new.cast(params[:shiny]) # Ensures it's a proper boolean
 
-    # Check if the user has already caught this Pokémon
-    user_pokemon = current_user.user_pokemons.find_or_create_by(pokemon: pokemon)
+    # Check if the user has already caught this Pokémon (shiny or not)
+    user_pokemon = current_user.user_pokemons.find_or_create_by(pokemon: pokemon, shiny: is_shiny)
 
     # Mark the Pokémon as caught if not already
     user_pokemon.update(caught: true) unless user_pokemon.caught?
 
-    redirect_to new_encounter_path, notice: "You caught a #{pokemon.name}!"
+    adjective = is_shiny ? "shiny " : ""
+    redirect_to new_encounter_path, notice: "You caught a #{adjective}#{pokemon.name}!"
   end
 end

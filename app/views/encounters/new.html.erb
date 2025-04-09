@@ -1,11 +1,16 @@
 <h1>New Encounter!</h1>
 
 <% if @pokemon %>
-  <p>You encountered a <%= @pokemon.name %>!</p>
-  <img src="<%= @pokemon.sprite %>" alt="<%= @pokemon.name %> Sprite" width="150" height="150">
-
+  <% if @is_shiny %>
+    <p>You encountered a Shiny <%= @pokemon.name %>!</p>
+    <img src="<%= @pokemon.shiny_sprite %>" alt="<%= @pokemon.name %> Shiny Sprite" width="150" height="150">
+  <% else %>
+    <p>You encountered a <%= @pokemon.name %>!</p>
+    <img src="<%= @pokemon.sprite %>" alt="<%= @pokemon.name %> Sprite" width="150" height="150">
+  <% end %>
   <%= form_with url: encounters_path, method: :post do %>
     <%= hidden_field_tag :pokemon_id, @pokemon.id %>
+    <%= hidden_field_tag :shiny, @is_shiny %>
     <%= submit_tag "Catch Pokémon!" %>
   <% end %>
 

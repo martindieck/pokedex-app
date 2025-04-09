@@ -1,5 +1,19 @@
 <h1>Your Profile</h1>
 
+<%= link_to 'Go to New Encounter', new_encounter_path, class: 'button' %>
+
+<h2>Caught Shiny Pokémon: <%= @shiny_count %> / <%= @total_pokemon %></h2>
+
+<ul>
+  <% @caught_shinies.each do |pokemon| %>
+    <li>
+      <%= pokemon.name %> 
+      <img src="<%= pokemon.shiny_sprite %>" alt="<%= pokemon.name %> Shiny Sprite" width="50" height="50">
+    </li>
+  <% end %>
+</ul>
+
+
 <h2>Caught Pokémon: <%= @caught_count %> / <%= @total_pokemon %></h2>
 
 <ul>
@@ -11,4 +25,3 @@
   <% end %>
 </ul>
 
-<%= link_to 'Go to New Encounter', new_encounter_path, class: 'button' %>
