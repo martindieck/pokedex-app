@@ -8,6 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Pokemon.destroy_all
+
 require 'httparty'
 
 (1..151).each do |i|

@@ -1,5 +1,7 @@
 <h1>Your Profile</h1>
 
+<h2>Total caught Pokemon: <%= @total_catch_count %></h2>
+
 <%= link_to 'Go to New Encounter', new_encounter_path, class: 'button' %>
 
 <h2>Caught Shiny Pokémon: <%= @shiny_count %> / <%= @total_pokemon %></h2>

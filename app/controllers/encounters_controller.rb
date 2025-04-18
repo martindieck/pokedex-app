@@ -25,6 +25,8 @@ class EncountersController < ApplicationController
 
     # If no Pokémon was selected (although rare), fallback to the first Pokémon
     @pokemon ||= pokemons.first
+
+    @total_catch_count = current_user.catch_count
   end
 
   def create
@@ -37,6 +39,8 @@ class EncountersController < ApplicationController
 
     # Mark the Pokémon as caught if not already
     user_pokemon.update(caught: true) unless user_pokemon.caught?
+
+    current_user.increment!(:catch_count)
 
     adjective = is_shiny ? "shiny " : ""
     redirect_to new_encounter_path, notice: "You caught a #{adjective}#{pokemon.name}!"
