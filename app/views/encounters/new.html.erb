@@ -1,5 +1,11 @@
 <h1>New Encounter!</h1>
 
+<div
+  data-controller="autoclicker"
+  data-autoclicker-rate-value="<%= current_user.auto_click_rate %>"
+  data-autoclicker-user-id-value="<%= current_user.id %>">
+</div>
+
 <% if @pokemon %>
   <% if @is_shiny %>
     <p>You encountered a Shiny <%= @pokemon.name %>!</p>
@@ -21,4 +27,5 @@
 
 <!-- Add a button to go to the user's profile -->
 <%= link_to 'View Profile', profile_path, class: 'button' %>
-<p>Total caught Pokemon: <%= @total_catch_count %></p>
+<p>Total Pokémon caught: <span id="catch-count"><%= current_user.catch_count %></span></p>
+<p>Pokemon catch rate: <span><%= current_user.auto_click_rate %></span> per second</p>

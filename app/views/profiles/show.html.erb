@@ -1,6 +1,13 @@
 <h1>Your Profile</h1>
 
-<h2>Total caught Pokemon: <%= @total_catch_count %></h2>
+<div
+  data-controller="autoclicker"
+  data-autoclicker-rate-value="<%= current_user.auto_click_rate %>"
+  data-autoclicker-user-id-value="<%= current_user.id %>">
+</div>
+
+<h2>Total Pokémon caught: <span id="catch-count"><%= current_user.catch_count %></span></h2>
+<p>Pokemon catch rate: <span><%= current_user.auto_click_rate %></span> per second</p>
 
 <%= link_to 'Go to New Encounter', new_encounter_path, class: 'button' %>
 

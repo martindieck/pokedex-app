@@ -45,4 +45,8 @@ class EncountersController < ApplicationController
     adjective = is_shiny ? "shiny " : ""
     redirect_to new_encounter_path, notice: "You caught a #{adjective}#{pokemon.name}!"
   end
+
+  def increment_catch_count
+    current_user.increment!(:catch_count)
+  end
 end
