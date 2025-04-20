@@ -38,3 +38,17 @@
 <%= link_to 'View Profile', profile_path, class: 'button' %>
 <p>Total Pokémon caught: <span id="catch-count"><%= current_user.catch_count %></span></p>
 <p>Pokemon catch rate: <span><%= current_user.auto_click_rate %></span> per second</p>
+
+<% base_cost = 100 %>
+<% next_cost = (base_cost * (1.15 ** current_user.trainers)).to_i %>
+
+<div data-controller="trainers">
+  <p>Money: <span data-trainers-target="money"><%= current_user.money %></span></p>
+  <p>Trainers: <span data-trainers-target="trainers"><%= current_user.trainers %></span></p>
+
+  <button
+    data-action="click->trainers#buyTrainer"
+    data-trainers-target="button">
+    Hire Trainer (Cost: <%= next_cost %>)
+  </button>
+</div>
