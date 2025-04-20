@@ -122,3 +122,8 @@ body {
     box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
   }
   
+  .pokedollar-icon {
+    width: 12px;
+    vertical-align: middle;
+    margin-right: 3px;
+  }
