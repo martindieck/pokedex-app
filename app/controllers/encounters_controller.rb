@@ -51,6 +51,6 @@ class EncountersController < ApplicationController
   end
 
   def increment_balance
-    current_user.increment!(:money)
+    current_user.increment!(:money, params[:earnings].to_i)
   end
 end

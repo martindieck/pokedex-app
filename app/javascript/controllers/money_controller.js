@@ -16,22 +16,35 @@ export default class extends Controller {
   }
 
   startEarning() {
-    const intervalMs = (1000 / this.rateValue) * this.catch_countValue
+    this.localEarnings = 0
 
+    const intervalMs = (1000 / this.rateValue) * this.catch_countValue
     this.interval = setInterval(() => {
-      this.incrementBalance()
+      this.incrementBalanceLocally()
     }, intervalMs)
+
+    this.syncInterval = setInterval(() => {
+      if (this.localEarnings > 0) {
+        this.syncBalanceWithServer()
+      }
+    }, 1000)
   }
 
-  incrementBalance() {
+  incrementBalanceLocally() {
+    const balanceElement = document.getElementById("balance")
+    balanceElement.textContent = parseInt(document.getElementById("balance").textContent) + 1
+    this.localEarnings += 1
+  }
+
+  syncBalanceWithServer() {
     fetch(`/encounters/increment_balance`, {
       method: "POST",
       headers: {
         "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
         "Content-Type": "application/json"
-      }
-    }).then(
-      document.getElementById("balance").textContent = parseInt(document.getElementById("balance").textContent) + 1
-    )
+      },
+      body: JSON.stringify({earnings: this.localEarnings})
+  })
+    this.localEarnings = 0
   }
 }
