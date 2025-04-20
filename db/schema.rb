@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_18_174500) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_20_171154) do
   create_table "pokemons", force: :cascade do |t|
     t.string "name"
     t.string "type1"
@@ -44,6 +44,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_18_174500) do
     t.datetime "updated_at", null: false
     t.integer "catch_count"
     t.float "auto_click_rate", default: 0.0
+    t.integer "money", default: 0
+    t.float "earn_rate", default: 5.0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

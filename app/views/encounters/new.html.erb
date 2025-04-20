@@ -6,6 +6,15 @@
   data-autoclicker-user-id-value="<%= current_user.id %>">
 </div>
 
+<div
+  data-controller="money"
+  data-money-rate-value="<%= current_user.earn_rate %>"
+  data-money-user-id-value="<%= current_user.id %>"
+  data-money-count-value="<%= current_user.catch_count%>">
+</div>
+
+<h2>Money: <img class="pokedollar-icon" src="<%= asset_path 'pokedollar.png' %>"><span id="balance"><%= current_user.money %></span></h2>
+
 <% if @pokemon %>
   <% if @is_shiny %>
     <p>You encountered a Shiny <%= @pokemon.name %>!</p>

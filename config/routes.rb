@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :encounters, only: [ :new, :create ]
   get "profile", to: "profiles#show"
   post "/encounters/increment_catch_count", to: "encounters#increment_catch_count"
+  post "/encounters/increment_balance", to: "encounters#increment_balance"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

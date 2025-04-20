@@ -49,4 +49,8 @@ class EncountersController < ApplicationController
   def increment_catch_count
     current_user.increment!(:catch_count)
   end
+
+  def increment_balance
+    current_user.increment!(:money)
+  end
 end
