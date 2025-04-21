@@ -9,7 +9,7 @@ class TrainersController < ApplicationController
       current_user.update!(
         money: current_user.money - cost,
         trainers: current_user.trainers + 1,
-        auto_click_rate: current_user.trainers * 0.1
+        auto_click_rate: (current_user.trainers + 1) * 0.1
       )
 
       new_cost = (base_cost * (1.15 ** current_user.trainers)).to_i

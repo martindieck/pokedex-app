@@ -13,6 +13,7 @@ export default class extends Controller {
 
   disconnect() {
     clearInterval(this.interval)
+    clearInterval(this.syncInterval)
   }
 
   startEarning() {
@@ -31,8 +32,6 @@ export default class extends Controller {
   }
 
   incrementBalanceLocally() {
-    const balanceElement = document.getElementById("balance")
-    balanceElement.textContent = parseInt(document.getElementById("balance").textContent) + 1
     this.localEarnings += 1
   }
 
@@ -43,8 +42,22 @@ export default class extends Controller {
         "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({earnings: this.localEarnings})
-  })
+      body: JSON.stringify({ earnings: this.localEarnings })
+    }).then(() => {
+      this.refreshStats()
+    })
+
     this.localEarnings = 0
+  }
+
+  refreshStats() {
+    fetch("/encounters/stats")
+      .then(response => response.text())
+      .then(html => {
+        const statsElement = document.getElementById("stats")
+        if (statsElement) {
+          statsElement.innerHTML = html
+        }
+      })
   }
 }
