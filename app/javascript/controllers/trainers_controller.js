@@ -16,6 +16,8 @@ export default class extends Controller {
       body: JSON.stringify({})
     }).then(() => {
       this.refreshFunctions()
+    }).then(() => {
+      this.refreshStats()
     })
 
     if (response.ok) {
@@ -33,6 +35,17 @@ export default class extends Controller {
       .then(response => response.text())
       .then(html => {
         const statsElement = document.getElementById("functions")
+        if (statsElement) {
+          statsElement.innerHTML = html
+        }
+      })
+  }
+
+  refreshStats() {
+    fetch("/encounters/stats")
+      .then(response => response.text())
+      .then(html => {
+        const statsElement = document.getElementById("stats")
         if (statsElement) {
           statsElement.innerHTML = html
         }

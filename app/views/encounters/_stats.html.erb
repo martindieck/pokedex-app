@@ -1,4 +1,3 @@
-<h2>Money: <img class="pokedollar-icon" src="<%= asset_path 'pokedollar.png' %>"><%= format_number(user.money) %></h2>
-<p>Trainers: <%= format_number(user.trainers) %></p>
-<p>Pokemon Catch Rate: <%= format_number(user.auto_click_rate) %></p>
-<p>Total Pokémon caught: <%= format_number(user.catch_count) %></p>
+<h2><strong>Money:</strong> <img class="pokedollar-icon" src="<%= asset_path 'pokedollar.png' %>"><%= format_number(user.money) %></h2>
+<p><strong>Total Pokémon caught:</strong> <%= format_number(user.catch_count) %></p>
+<p><strong>Trainers:</strong> <%= format_number(user.trainers) %> - <strong>Pokemon Catch Rate:</strong> <%= format_number(user.auto_click_rate) %> per/s</p>

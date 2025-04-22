@@ -16,6 +16,7 @@
 
 <div data-controller="trainers">
   <button
+    class="upgrade-button"
     data-action="click->trainers#buyTrainer"
     data-trainers-target="button">
     Hire Trainer (Cost: <%= format_number(next_cost) %>)

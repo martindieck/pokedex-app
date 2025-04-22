@@ -53,6 +53,25 @@ body {
     background-color: #ffdd33;
     transform: scale(1.05);
   }
+
+  .upgrade-button {
+    display: inline-block;
+    margin: 1rem auto;
+    padding: 0.6rem 1.2rem;
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .upgrade-button:hover {
+    background-color: #ffdd33;
+    transform: scale(1.05);
+  }
   
   /* LIST STYLING FOR PROFILE PAGE */
   ul {
