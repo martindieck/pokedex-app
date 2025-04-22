@@ -59,4 +59,8 @@ class EncountersController < ApplicationController
   def stats
     render partial: "stats", locals: { user: current_user }
   end
+
+  def functions
+    render partial: "functions", locals: { user: current_user }
+  end
 end

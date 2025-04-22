@@ -1,0 +1,23 @@
+<div
+  data-controller="autoclicker"
+  data-autoclicker-rate-value="<%= user.auto_click_rate %>"
+  data-autoclicker-user-id-value="<%= user.id %>">
+</div>
+
+<div
+  data-controller="money"
+  data-money-rate-value="<%= user.earn_rate %>"
+  data-money-user-id-value="<%= user.id %>"
+  data-money-catch-count-value="<%= user.catch_count%>">
+</div>
+
+<% base_cost = 100 %>
+<% next_cost = (base_cost * (1.15 ** current_user.trainers)).to_i %>
+
+<div data-controller="trainers">
+  <button
+    data-action="click->trainers#buyTrainer"
+    data-trainers-target="button">
+    Hire Trainer (Cost: <%= next_cost %>)
+  </button>
+</div>

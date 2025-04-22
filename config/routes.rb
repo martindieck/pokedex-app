@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "/encounters/increment_balance", to: "encounters#increment_balance"
   post "/trainers/buy", to: "trainers#buy"
   get "/encounters/stats", to: "encounters#stats"
+  get "/encounters/functions", to: "encounters#functions"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
