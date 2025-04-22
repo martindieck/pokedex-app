@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "/encounters/increment_catch_count", to: "encounters#increment_catch_count"
   post "/encounters/increment_balance", to: "encounters#increment_balance"
   post "/trainers/buy", to: "trainers#buy"
+  post "/berries/buy", to: "berries#buy"
   get "/encounters/stats", to: "encounters#stats"
   get "/encounters/functions", to: "encounters#functions"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

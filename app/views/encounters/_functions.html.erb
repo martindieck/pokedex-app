@@ -11,14 +11,26 @@
   data-money-catch-count-value="<%= user.catch_count%>">
 </div>
 
-<% base_cost = 100 %>
-<% next_cost = (base_cost * (1.15 ** current_user.trainers)).to_i %>
+<% base_cost_trainers = 100 %>
+<% next_cost_trainers = (base_cost_trainers * (1.15 ** current_user.trainers)).to_i %>
 
 <div data-controller="trainers">
   <button
     class="upgrade-button"
     data-action="click->trainers#buyTrainer"
     data-trainers-target="button">
-    Hire Trainer (Cost: <%= format_number(next_cost) %>)
+    Hire Trainer (Cost: <%= format_number(next_cost_trainers) %>)
+  </button>
+</div>
+
+<% base_cost_berries = 1000 %>
+<% next_cost_berries = (base_cost_berries * (1.15 ** current_user.berries)).to_i %>
+
+<div data-controller="berries">
+  <button
+    class="upgrade-button"
+    data-action="click->berries#buyBerry"
+    data-berries-target="button">
+    Buy Berry (Cost: <%= format_number(next_cost_berries) %>)
   </button>
 </div>
