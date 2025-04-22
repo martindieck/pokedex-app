@@ -5,7 +5,7 @@ class EncountersController < ApplicationController
     pokemons = Pokemon.all
 
     # Extract the rarities (probabilities) for each Pokémon
-    rarities = pokemons.map(&:rarity)
+    rarities = pokemons.map(&:rarity).compact  # Ensure no nil values
 
     # Calculate the total sum of rarities
     total_rarity = rarities.sum

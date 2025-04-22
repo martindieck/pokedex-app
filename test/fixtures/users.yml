@@ -4,8 +4,20 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  email: "user1@example.com"
+  encrypted_password: "<%= Devise::Encryptor.digest(User, 'password123') %>" # You can use Devise to generate this
+  catch_count: 0
+  auto_click_rate: 0.0
+  money: 0
+  earn_rate: 5.0
+  trainers: 0
+
+two:
+  email: "user2@example.com"
+  encrypted_password: "<%= Devise::Encryptor.digest(User, 'password123') %>" # Similarly, a different password hash
+  catch_count: 5
+  auto_click_rate: 1.5
+  money: 100
+  earn_rate: 10.0
+  trainers: 2
