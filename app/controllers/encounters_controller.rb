@@ -48,10 +48,12 @@ class EncountersController < ApplicationController
 
   def increment_catch_count
     current_user.increment!(:catch_count, params[:catch_count].to_i)
+    head :ok
   end
 
   def increment_balance
     current_user.increment!(:money, params[:earnings].to_i)
+    head :ok
   end
 
   def stats

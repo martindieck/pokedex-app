@@ -10,7 +10,7 @@
   data-controller="money"
   data-money-rate-value="<%= current_user.earn_rate %>"
   data-money-user-id-value="<%= current_user.id %>"
-  data-money-count-value="<%= current_user.catch_count%>">
+  data-money-catch-count-value="<%= current_user.catch_count%>">
 </div>
 
 <% if @pokemon %>
@@ -36,7 +36,7 @@
 <%= link_to 'View Profile', profile_path, class: 'button' %>
 
 <%= turbo_frame_tag "stats" do %>
-  <%= render "stats", user: current_user %>
+  <%= render "encounters/stats", user: current_user %>
 <% end %>
 
 <% base_cost = 100 %>

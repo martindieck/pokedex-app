@@ -10,13 +10,12 @@
   data-controller="money"
   data-money-rate-value="<%= current_user.earn_rate %>"
   data-money-user-id-value="<%= current_user.id %>"
-  data-money-count-value="<%= current_user.catch_count%>">
+  data-money-catch-count-value="<%= current_user.catch_count%>">
 </div>
 
-<h2>Money: <img class="pokedollar-icon" src="<%= asset_path 'pokedollar.png' %>"><span id="balance"><%= current_user.money %></span></h2>
-
-<h2>Total Pokémon caught: <span id="catch-count"><%= current_user.catch_count %></span></h2>
-<p>Pokemon catch rate: <span><%= current_user.auto_click_rate %></span> per second</p>
+<%= turbo_frame_tag "stats" do %>
+  <%= render "encounters/stats", user: current_user %>
+<% end %>
 
 <%= link_to 'Go to New Encounter', new_encounter_path, class: 'button' %>
 

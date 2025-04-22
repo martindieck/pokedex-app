@@ -12,38 +12,25 @@ export default class extends Controller {
   }
 
   disconnect() {
-    clearInterval(this.interval)
     clearInterval(this.syncInterval)
 
   }
 
   startAutoclicking() {
-    this.localPokemon = 0
-
-    const intervalMs = 1000 / this.rateValue
-    this.interval = setInterval(() => {
-      this.incrementCatchCountLocally()
-    }, intervalMs)
-
     this.syncInterval = setInterval(() => {
-      if (this.localPokemon > 0) {
-        this.syncCatchCountWithServer()
-      }
+      this.syncCatchCountWithServer()
     }, 1000)
   }
 
-  incrementCatchCountLocally() {
-    this.localPokemon += 1
-  }
-
   syncCatchCountWithServer() {
+    const localPokemon = this.rateValue
     fetch(`/encounters/increment_catch_count`, {
       method: "POST",
       headers: {
         "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ catch_count: this.localPokemon })
+      body: JSON.stringify({ catch_count: localPokemon })
     })
   }
 }

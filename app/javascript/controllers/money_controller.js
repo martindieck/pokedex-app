@@ -4,7 +4,7 @@ export default class extends Controller {
   static values = {
     rate: Number, // Money generation in dollars per second per pokemon
     userId: Number,
-    catch_count: Number
+    catchCount: Number
   }
 
   connect() {
@@ -12,42 +12,28 @@ export default class extends Controller {
   }
 
   disconnect() {
-    clearInterval(this.interval)
     clearInterval(this.syncInterval)
   }
 
   startEarning() {
-    this.localEarnings = 0
-
-    const intervalMs = (1000 / this.rateValue) * this.catch_countValue
-    this.interval = setInterval(() => {
-      this.incrementBalanceLocally()
-    }, intervalMs)
-
     this.syncInterval = setInterval(() => {
-      if (this.localEarnings > 0) {
         this.syncBalanceWithServer()
-      }
     }, 1000)
   }
 
-  incrementBalanceLocally() {
-    this.localEarnings += 1
-  }
 
   syncBalanceWithServer() {
+    const localEarnings = this.rateValue * this.catchCountValue
     fetch(`/encounters/increment_balance`, {
       method: "POST",
       headers: {
         "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ earnings: this.localEarnings })
+      body: JSON.stringify({ earnings: localEarnings })
     }).then(() => {
       this.refreshStats()
     })
-
-    this.localEarnings = 0
   }
 
   refreshStats() {
