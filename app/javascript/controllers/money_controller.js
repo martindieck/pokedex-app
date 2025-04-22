@@ -7,13 +7,9 @@ export default class extends Controller {
     catchCount: Number
   }
 
-  constructor() {
-    super()
-    this.runningDecimalSum = 0 // To store the sum of decimal parts
-  }
-
   connect() {
     this.startEarning()
+    console.log('Controller connected Money')
   }
 
   disconnect() {
@@ -27,6 +23,7 @@ export default class extends Controller {
   }
 
   syncBalanceWithServer() {
+    this.runningDecimalSum = 0
     const localEarnings = this.rateValue * this.catchCountValue
     const integerPart = Math.floor(localEarnings)
     const decimalPart = localEarnings - integerPart

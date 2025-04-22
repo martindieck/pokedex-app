@@ -7,11 +7,6 @@ export default class extends Controller {
     userId: Number
   }
 
-  constructor() {
-    super()
-    this.runningDecimalSum = 0 // To store the sum of decimal parts
-  }
-
   connect() {
     this.startAutoclicking()
   }
@@ -27,6 +22,7 @@ export default class extends Controller {
   }
 
   syncCatchCountWithServer() {
+    this.runningDecimalSum = 0 // To store the sum of decimal parts
     const localPokemon = this.rateValue
     const integerPart = Math.floor(localPokemon)
     const decimalPart = localPokemon - integerPart
