@@ -1,18 +1,5 @@
 <h1>Your Profile</h1>
 
-<div
-  data-controller="autoclicker"
-  data-autoclicker-rate-value="<%= current_user.auto_click_rate %>"
-  data-autoclicker-user-id-value="<%= current_user.id %>">
-</div>
-
-<div
-  data-controller="money"
-  data-money-rate-value="<%= current_user.earn_rate %>"
-  data-money-user-id-value="<%= current_user.id %>"
-  data-money-catch-count-value="<%= current_user.catch_count%>">
-</div>
-
 <%= turbo_frame_tag "stats" do %>
   <%= render "encounters/stats", user: current_user %>
 <% end %>
