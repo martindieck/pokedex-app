@@ -5,7 +5,7 @@
     <p>You encountered a Shiny <%= @pokemon.name %>!</p>
     <img src="<%= @pokemon.shiny_sprite %>" alt="<%= @pokemon.name %> Shiny Sprite" width="150" height="150">
   <% else %>
-    <p>You encountered a <%= @pokemon.name %>!</p>
+    <p>You encountered <%= @pokemon.name %>!</p>
     <img src="<%= @pokemon.sprite %>" alt="<%= @pokemon.name %> Sprite" width="150" height="150">
   <% end %>
   <%= form_with url: encounters_path, method: :post do %>

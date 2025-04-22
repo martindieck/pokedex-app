@@ -8,27 +8,26 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Pokemon.destroy_all
-
 require 'httparty'
 
-(1..151).each do |i|
+(1..1025).each do |i|
   response = HTTParty.get("https://pokeapi.co/api/v2/pokemon/#{i}")
   data = response.parsed_response
-  name = data['name'].capitalize
-  types = data['types'].map { |type| type['type']['name'].capitalize }
-  type1, type2 = types[0], types[1] || types[0]
-  sprite_url = data['sprites']['other']['home']['front_default']
-  shiny_sprite_url = data['sprites']['other']['home']['front_shiny']
 
-  Pokemon.create(
-    name: name,
-    type1: type1,
-    type2: type2,
-    pokedex_number: i,
-    sprite: sprite_url,
-    shiny_sprite: shiny_sprite_url
+  puts "Processing ##{i} - #{data['name'].capitalize}"
+
+  pokemon = Pokemon.find_or_initialize_by(pokedex_number: i)  # <─ key line
+
+  # always (re‑)assign the latest data
+  pokemon.assign_attributes(
+    name:  data['name'].capitalize,
+    type1: data['types'][0]['type']['name'].capitalize,
+    type2: (data['types'][1]&.dig('type', 'name') || data['types'][0]['type']['name']).capitalize,
+    sprite:        data['sprites']['other']['home']['front_default'],
+    shiny_sprite:  data['sprites']['other']['home']['front_shiny']
   )
+
+  pokemon.save!   # creates or updates as needed
 end
 
 require 'csv'
