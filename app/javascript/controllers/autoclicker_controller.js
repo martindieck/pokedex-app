@@ -6,8 +6,9 @@ export default class extends Controller {
     rate: Number, // auto_click_rate in clicks per second
     userId: Number
   }
-
+  
   connect() {
+    this.runningDecimalSum = 0
     this.startAutoclicking()
   }
 
@@ -22,10 +23,11 @@ export default class extends Controller {
   }
 
   syncCatchCountWithServer() {
-    this.runningDecimalSum = 0 // To store the sum of decimal parts
     const localPokemon = this.rateValue
     const integerPart = Math.floor(localPokemon)
     const decimalPart = localPokemon - integerPart
+    console.log("local ", localPokemon)
+    console.log("running ", this.runningDecimalSum)
 
     // Accumulate the decimal part
     this.runningDecimalSum += decimalPart

@@ -8,8 +8,8 @@ export default class extends Controller {
   }
 
   connect() {
+    this.runningDecimalSum = 0
     this.startEarning()
-    console.log('Controller connected Money')
   }
 
   disconnect() {
@@ -23,7 +23,6 @@ export default class extends Controller {
   }
 
   syncBalanceWithServer() {
-    this.runningDecimalSum = 0
     const localEarnings = this.rateValue * this.catchCountValue
     const integerPart = Math.floor(localEarnings)
     const decimalPart = localEarnings - integerPart
