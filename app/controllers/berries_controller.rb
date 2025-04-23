@@ -9,7 +9,7 @@ class BerriesController < ApplicationController
       current_user.update!(
         money: current_user.money - cost,
         berries: current_user.berries + 1,
-        earn_rate: (current_user.berries + 1) * 0.1
+        earn_rate: 1+((current_user.berries + 1) * 0.1)
       )
 
       new_cost = (base_cost * (1.15 ** current_user.berries)).to_i
