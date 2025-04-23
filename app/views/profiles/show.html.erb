@@ -4,6 +4,10 @@
   <%= render "encounters/stats", user: current_user %>
 <% end %>
 
+<%= turbo_frame_tag "functions" do %>
+      <%= render "encounters/functions", user: current_user %>
+    <% end %>
+
 <%= link_to 'Go to New Encounter', new_encounter_path, class: 'button' %>
 
 <h2>Caught Shiny Pokémon: <%= @shiny_count %> / <%= @total_pokemon %></h2>

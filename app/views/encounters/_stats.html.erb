@@ -1,4 +1,44 @@
-<h2><strong>Money:</strong> <img class="pokedollar-icon" src="<%= asset_path 'pokedollar.png' %>"><%= format_number(user.money) %></h2>
-<p><strong>Total Pokémon caught:</strong> <%= format_number(user.catch_count) %></p>
-<p><strong>Trainers:</strong> <%= format_number(user.trainers) %> - <strong>Pokemon Catch Rate:</strong> <%= format_number(user.auto_click_rate) %> per/s</p>
-<p><strong>Berries:</strong> <%= format_number(user.berries) %> - <strong>Money Earn Rate:</strong> <%= format_number(user.earn_rate) %> per/s per Pokemon</p>
+<div class="stats-panel">
+  <h2>
+    <strong>Money:</strong>
+    <img class="pokedollar-icon" src="<%= asset_path 'pokedollar.png' %>">
+    <%= format_number(user.money) %>
+  </h2>
+
+  <div class="stats-row">
+     <div class="stat-pair">
+      <div class="stat-item">
+        <strong>Pokémon caught:</strong>
+        <span><%= format_number(user.catch_count) %></span>
+      </div>
+      <div class="stat-item">
+        <strong>Money Earn Rate:</strong>
+        <img class="pokedollar-icon" src="<%= asset_path 'pokedollar.png' %>">
+        <span><%= format_number(user.earn_rate*user.catch_count) %>/s</span>
+      </div>
+    </div>
+
+    <div class="stat-pair">
+      <div class="stat-item">
+        <strong>Trainers:</strong>
+        <span><%= format_number(user.trainers) %></span>
+      </div>
+      <div class="stat-item">
+        <strong>Pokemon Catch Rate:</strong>
+        <span><%= format_number(user.auto_click_rate) %>/s</span>
+      </div>
+    </div>
+
+    <div class="stat-pair">
+      <div class="stat-item">
+        <strong>Berries:</strong>
+        <span><%= format_number(user.berries) %></span>
+      </div>
+      <div class="stat-item">
+        <strong>Earn Rate per Pokemon:</strong>
+        <img class="pokedollar-icon" src="<%= asset_path 'pokedollar.png' %>">
+        <span><%= format_number(user.earn_rate) %>/s</span>
+      </div>
+    </div>
+  </div>
+</div>

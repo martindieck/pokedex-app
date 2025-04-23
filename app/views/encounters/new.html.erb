@@ -1,31 +1,40 @@
-<h1>New Encounter!</h1>
+<div class="encounter-layout">
+  <div class="encounter-main"
+  style="background-image: url('<%= asset_path 'background.jpg' %>');background-position: bottom;">
+    <h1 class="encounter-text">New Encounter!</h1>
 
-<% if @pokemon %>
-  <% if @is_shiny %>
-    <p>You encountered a Shiny <%= @pokemon.name %>!</p>
-    <img src="<%= @pokemon.shiny_sprite %>" alt="<%= @pokemon.name %> Shiny Sprite" width="150" height="150">
-  <% else %>
-    <p>You encountered <%= @pokemon.name %>!</p>
-    <img src="<%= @pokemon.sprite %>" alt="<%= @pokemon.name %> Sprite" width="150" height="150">
-  <% end %>
-  <%= form_with url: encounters_path, method: :post do %>
-    <%= hidden_field_tag :pokemon_id, @pokemon.id %>
-    <%= hidden_field_tag :shiny, @is_shiny %>
-    <%= submit_tag "Catch Pokémon!" %>
-  <% end %>
+    <% if @pokemon %>
+      <% if @is_shiny %>
+        <p class="encounter-text">You encountered a Shiny <%= @pokemon.name %>!</p>
+        <img class="encounter-img" src="<%= @pokemon.shiny_sprite %>" alt="<%= @pokemon.name %> Shiny Sprite" width="150" height="150">
+      <% else %>
+        <p class="encounter-text">You encountered <%= @pokemon.name %>!</p>
+        <img class="encounter-img" src="<%= @pokemon.sprite %>" alt="<%= @pokemon.name %> Sprite" width="150" height="150">
+      <% end %>
+      <%= form_with url: encounters_path, method: :post, remote: true do %>
+        <%= hidden_field_tag :pokemon_id, @pokemon.id %>
+        <%= hidden_field_tag :shiny, @is_shiny %>
+        <%= submit_tag '', style: 'display: none;' %> <!-- Hide the default submit button -->
+        <button type="submit" class="upgrade-button">
+            <img src="<%= asset_path('icon.png') %>"/>
+            Catch Pokémon!
+        </button>
+        <% end %>
+    <% else %>
+      <p>No Pokémon encountered yet. Try again!</p>
+      <%= link_to 'Try Again', new_encounter_path %>
+    <% end %>
 
-<% else %>
-  <p>No Pokémon encountered yet. Try again!</p>
-  <%= link_to 'Try Again', new_encounter_path %>
-<% end %>
+    <%= link_to 'View Profile', profile_path, class: 'button' %>
+  </div>
+  <div class="encounter-sidebar">
+    <%= turbo_frame_tag "stats" do %>
+      <%= render "encounters/stats", user: current_user %>
+    <% end %>
 
-<!-- Add a button to go to the user's profile -->
-<%= link_to 'View Profile', profile_path, class: 'button' %>
+    <%= turbo_frame_tag "functions" do %>
+      <%= render "encounters/functions", user: current_user %>
+    <% end %>
+  </div>
 
-<%= turbo_frame_tag "stats" do %>
-  <%= render "encounters/stats", user: current_user %>
-<% end %>
-
-<%= turbo_frame_tag "functions" do %>
-  <%= render "encounters/functions", user: current_user %>
-<% end %>
+</div>
