@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_22_053142) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_23_023603) do
   create_table "pokemons", force: :cascade do |t|
     t.string "name"
     t.string "type1"
@@ -42,7 +42,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_053142) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "catch_count"
+    t.integer "catch_count", default: 0
     t.float "auto_click_rate", default: 0.0
     t.integer "money", default: 0
     t.float "earn_rate", default: 1.0
